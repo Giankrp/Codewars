@@ -1,6 +1,9 @@
 void main() {
-print(arrayPlusArray([1, 2, 3], [4, 5, 6]));
+  print(arrayPlusArray([1, 2, 3], [4, 5, 6]));
 }
+
+/// Suma todos los elementos de dos arrays y devuelve el total.
+/// Si ambos arrays están vacíos devuelve 0.
 int arrayPlusArray(List<int> arr1, List<int> arr2) {
   if (arr1.isEmpty && arr2.isEmpty) {
     return 0;

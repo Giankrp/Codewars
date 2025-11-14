@@ -8,13 +8,15 @@ import (
 )
 
 func main() {
-	//fmt.Println(CamelCase("hello case"))
-	//contar()
-	//Vaporcode("hola papas")
+	// funciones de ejemplo en main
+	// fmt.Println(CamelCase("hello case"))
+	// contar()
+	// Vaporcode("hola papas")
 	// DecodeMorse(".... . -.--   .--- ..- -.. .")
 	fmt.Println(SortNumbers([]int{2, 2, 0, 32, 423, 423, 432, 424, 324, 324, 25, 46, 567, 2, 35}))
 }
 
+// GetCount devuelve el número de vocales en la cadena.
 func GetCount(str string) (count int) {
 	// Enter solution here
 	papas := strings.Split(str, "")
@@ -28,18 +30,22 @@ func GetCount(str string) (count int) {
 	}
 	return con
 }
+
+// SortNumbers ordena una slice de enteros en orden ascendente.
+// Si la slice está vacía retorna una slice vacía.
 func SortNumbers(numbers []int) []int {
 	if len(numbers) == 0 {
 		return []int{}
 	}
 
 	sort.Slice(numbers, func(i, j int) bool {
-
 		return numbers[i] < numbers[j]
 	})
 
 	return numbers
 }
+
+// Solution separa la cadena en pares de caracteres, rellenando con '_' si es impar.
 func Solution(str string) []string {
 	melo := strings.Split(str, "")
 	var melo2 []string
@@ -53,6 +59,7 @@ func Solution(str string) []string {
 	return melo2
 }
 
+// Digitize devuelve los dígitos de n en orden inverso (unidad primero).
 func Digitize(n int) []int {
 	if n == 0 {
 		return []int{0}
@@ -66,6 +73,7 @@ func Digitize(n int) []int {
 
 	return digits
 }
+
 func contar() {
 	mapa := make(map[int]int)
 	papas := []int{2, 3, 5, 3, 7, 9, 5, 3, 7}
@@ -77,6 +85,7 @@ func contar() {
 	fmt.Println(mapa)
 }
 
+// Vaporcode convierte a mayúsculas y limpia espacios.
 func Vaporcode(s string) string {
 
 	hola := strings.Split(strings.Trim(s, " "), " ")
@@ -94,6 +103,8 @@ func Vaporcode(s string) string {
 	fmt.Println(strings.ToUpper(mensaje))
 	return strings.ToUpper(mensaje)
 }
+
+// CamelCase convierte "hello case" -> "HelloCase"
 func CamelCase(s string) string {
 	hola := strings.Split(strings.Trim(s, " "), " ")
 	mensaje := ""
@@ -109,6 +120,7 @@ func CamelCase(s string) string {
 	return mensaje // your code here
 }
 
+// DecodeMorse decodifica código morse simple (mapa en mayúsculas).
 func DecodeMorse(morse string) string {
 	// Mapa morse -> letra
 	reverseMorse := map[string]string{

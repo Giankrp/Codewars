@@ -2,6 +2,8 @@ void main() {
   print(likes(["hola", "melo", "papas", "si"]));
 }
 
+/// Formatea un mensaje de "likes" al estilo de kata de ejemplo.
+/// Maneja 0, 1, 2, y 3+ nombres.
 String likes(List<String> names) {
   String likes = "";
 
@@ -11,8 +13,7 @@ String likes(List<String> names) {
 
   for (int i = 0; i < names.length; i++) {
     if (i == 2) {
-      likes =
-          names[0] +
+      likes = names[0] +
           ", " +
           names[1] +
           " and " +

@@ -1,7 +1,9 @@
 void main(List<String> args) {
-  
+  // espacio para pruebas
 }
 
+/// Suma los elementos del array excluyendo el mayor y el menor.
+/// Si el array es nulo o tiene longitud <= 2 devuelve 0.
 int sumArray(List<int>? array) {
   // your code here
   if (array == null || array.length <= 2) return 0;
