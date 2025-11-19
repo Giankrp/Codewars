@@ -1,26 +1,30 @@
+// Paquete de ejemplos y katas varios: utilidades de cadenas y números.
 package main
 
 import (
-	"fmt"
-	"sort"
+    "fmt"
+    "sort"
 
-	"strings"
+    "strings"
 )
 
 func main() {
-	// funciones de ejemplo en main
-	// fmt.Println(CamelCase("hello case"))
-	// contar()
-	// Vaporcode("hola papas")
-	// DecodeMorse(".... . -.--   .--- ..- -.. .")
-	fmt.Println(SortNumbers([]int{2, 2, 0, 32, 423, 423, 432, 424, 324, 324, 25, 46, 567, 2, 35}))
+    // funciones de ejemplo en main
+    // fmt.Println(CamelCase("hello case"))
+    // contar()
+    // Vaporcode("hola papas")
+    // DecodeMorse(".... . -.--   .--- ..- -.. .")
+    fmt.Println(SortNumbers([]int{2, 2, 0, 32, 423, 423, 432, 424, 324, 324, 25, 46, 567, 2, 35}))
 }
 
-// GetCount devuelve el número de vocales en la cadena.
+// GetCount devuelve el número de vocales en minúscula en la cadena.
+// Parámetros: `str` cadena a evaluar.
+// Retorno: entero con el conteo de 'a,e,i,o,u'.
+// Consideraciones: normalizar a minúscula para contar mayúsculas.
 func GetCount(str string) (count int) {
-	// Enter solution here
-	papas := strings.Split(str, "")
-	con := 0
+    // Enter solution here
+    papas := strings.Split(str, "")
+    con := 0
 
 	for _, v := range papas {
 		if letra := strings.ToLower(v); letra != "a" && letra != "e" && letra != "i" && letra != "o" && letra != "u" {
@@ -28,42 +32,46 @@ func GetCount(str string) (count int) {
 		}
 		con++
 	}
-	return con
+    return con
 }
 
 // SortNumbers ordena una slice de enteros en orden ascendente.
 // Si la slice está vacía retorna una slice vacía.
+// Complejidad: O(n log n).
 func SortNumbers(numbers []int) []int {
-	if len(numbers) == 0 {
-		return []int{}
-	}
+    if len(numbers) == 0 {
+        return []int{}
+    }
 
 	sort.Slice(numbers, func(i, j int) bool {
 		return numbers[i] < numbers[j]
 	})
 
-	return numbers
+    return numbers
 }
 
 // Solution separa la cadena en pares de caracteres, rellenando con '_' si es impar.
+// Ejemplo: "abc" -> ["ab", "c_"]
 func Solution(str string) []string {
-	melo := strings.Split(str, "")
-	var melo2 []string
-	for i := 0; i < len(melo); i += 2 {
-		if i+1 < len(melo) {
-			melo2 = append(melo2, melo[i]+melo[i+1])
-		} else {
-			melo2 = append(melo2, melo[i]+"_")
-		}
-	}
-	return melo2
+    melo := strings.Split(str, "")
+    var melo2 []string
+    for i := 0; i < len(melo); i += 2 {
+        if i+1 < len(melo) {
+            melo2 = append(melo2, melo[i]+melo[i+1])
+        } else {
+            melo2 = append(melo2, melo[i]+"_")
+        }
+    }
+    return melo2
 }
 
 // Digitize devuelve los dígitos de n en orden inverso (unidad primero).
+// Parámetros: `n` entero no negativo.
+// Retorno: slice de dígitos.
 func Digitize(n int) []int {
-	if n == 0 {
-		return []int{0}
-	}
+    if n == 0 {
+        return []int{0}
+    }
 
 	var digits []int
 	for n > 0 {
@@ -71,21 +79,22 @@ func Digitize(n int) []int {
 		n /= 10
 	}
 
-	return digits
+    return digits
 }
 
 func contar() {
-	mapa := make(map[int]int)
-	papas := []int{2, 3, 5, 3, 7, 9, 5, 3, 7}
+    mapa := make(map[int]int)
+    papas := []int{2, 3, 5, 3, 7, 9, 5, 3, 7}
 
-	for _, v := range papas {
-		mapa[v]++
-	}
+    for _, v := range papas {
+        mapa[v]++
+    }
 
-	fmt.Println(mapa)
+    fmt.Println(mapa)
 }
 
 // Vaporcode convierte a mayúsculas y limpia espacios.
+// Retorna la cadena con dos espacios entre caracteres.
 func Vaporcode(s string) string {
 
 	hola := strings.Split(strings.Trim(s, " "), " ")
@@ -100,57 +109,61 @@ func Vaporcode(s string) string {
 		}
 		mensaje += " "
 	}
-	fmt.Println(strings.ToUpper(mensaje))
-	return strings.ToUpper(mensaje)
+    fmt.Println(strings.ToUpper(mensaje))
+    return strings.ToUpper(mensaje)
 }
 
 // CamelCase convierte "hello case" -> "HelloCase"
+// Considera espacios como separadores; ignora espacios iniciales/finales.
 func CamelCase(s string) string {
-	hola := strings.Split(strings.Trim(s, " "), " ")
-	mensaje := ""
-	if s == "" {
-		return ""
-	}
-	for _, v := range hola {
+    hola := strings.Split(strings.Trim(s, " "), " ")
+    mensaje := ""
+    if s == "" {
+        return ""
+    }
+    for _, v := range hola {
 
-		mensaje += strings.ToUpper(string(v[0]))
-		mensaje += string(v[1:])
-	}
-	fmt.Println(hola)
-	return mensaje // your code here
+        mensaje += strings.ToUpper(string(v[0]))
+        mensaje += string(v[1:])
+    }
+    fmt.Println(hola)
+    return mensaje // your code here
 }
 
 // DecodeMorse decodifica código morse simple (mapa en mayúsculas).
+// Parámetros: `morse` con separación de letras por espacio y palabras por triple espacio.
+// Retorna: cadena decodificada en mayúsculas.
+// Nota: solo soporta letras A-Z según el mapa definido.
 func DecodeMorse(morse string) string {
-	// Mapa morse -> letra
-	reverseMorse := map[string]string{
-		".-":   "A",
-		"-...": "B",
-		"-.-.": "C",
-		"-..":  "D",
-		".":    "E",
-		"..-.": "F",
-		"--.":  "G",
-		"....": "H",
-		"..":   "I",
-		".---": "J",
-		"-.-":  "K",
-		".-..": "L",
-		"--":   "M",
-		"-.":   "N",
-		"---":  "O",
-		".--.": "P",
-		"--.-": "Q",
-		".-.":  "R",
-		"...":  "S",
-		"-":    "T",
-		"..-":  "U",
-		"...-": "V",
-		".--":  "W",
-		"-..-": "X",
-		"-.--": "Y",
-		"--..": "Z",
-	}
+    // Mapa morse -> letra
+    reverseMorse := map[string]string{
+        ".-":   "A",
+        "-...": "B",
+        "-.-.": "C",
+        "-..":  "D",
+        ".":    "E",
+        "..-.": "F",
+        "--.":  "G",
+        "....": "H",
+        "..":   "I",
+        ".---": "J",
+        "-.-":  "K",
+        ".-..": "L",
+        "--":   "M",
+        "-.":   "N",
+        "---":  "O",
+        ".--.": "P",
+        "--.-": "Q",
+        ".-.":  "R",
+        "...":  "S",
+        "-":    "T",
+        "..-":  "U",
+        "...-": "V",
+        ".--":  "W",
+        "-..-": "X",
+        "-.--": "Y",
+        "--..": "Z",
+    }
 
 	morse = strings.TrimSpace(morse)
 	words := strings.Split(morse, "   ")
@@ -170,6 +183,6 @@ func DecodeMorse(morse string) string {
 		resultWords = append(resultWords, decodedWord)
 	}
 
-	fmt.Println(strings.Join(resultWords, " "))
-	return strings.Join(resultWords, " ")
+    fmt.Println(strings.Join(resultWords, " "))
+    return strings.Join(resultWords, " ")
 }

@@ -1,3 +1,8 @@
+/// Separa `s` en pares de dos caracteres. Si la longitud es impar,
+/// rellena el último par con guion bajo `'_'`.
+///
+/// Ejemplo:
+/// - "abc" -> ["ab", "c_"]
 List<String> solution(String s) {
   List<String> result = [];
 

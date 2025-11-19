@@ -4,6 +4,19 @@ void main() {
 
 /// Formatea un mensaje de "likes" al estilo de kata de ejemplo.
 /// Maneja 0, 1, 2, y 3+ nombres.
+///
+/// Parámetros:
+/// - `names`: listado de nombres.
+///
+/// Flujo de casos:
+/// - 0: `"no one like this"`.
+/// - 1: `"X likes this"`.
+/// - 2: `"X and Y like this"`.
+/// - >=3: `"X, Y and N others like this"`.
+///
+/// Consideraciones:
+/// - El bucle `for` reescribe `likes` según condiciones; puede ser
+///   simplificado con `if/else` por casos.
 String likes(List<String> names) {
   String likes = "";
 

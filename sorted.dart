@@ -1,3 +1,10 @@
+/// Indica si `arr` está ordenado ascendente, descendente o no ordenado.
+///
+/// Retorno:
+/// - "yes, ascending", "yes, descending" o "no".
+///
+/// Consideraciones:
+/// - Arrays con todos los elementos iguales cuentan como ascendentes.
 String isSortedAndHow(List<int> arr) {
   bool ascending = true;
   bool descending = true;
